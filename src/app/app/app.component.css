@@ -1,0 +1,17 @@
+.top-nav {
+  background-color: #0d6ea7;
+  margin-bottom: 2rem;
+  display: flex;
+  align-content: center;
+  justify-content: flex-end;
+  align-items: center;
+  color: white;
+}
+.top-nav-button {
+  background-color: #075685;
+  padding: 1rem;
+  cursor: pointer;
+}
+.top-nav-button:hover {
+  background-color: #328bbf;
+}

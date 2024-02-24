@@ -17,17 +17,17 @@ export class LoginComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
       password: ["", Validators.required],
     });
   }
   handleLogin() {
-    const { username, password } = this.loginForm.value;
+    const { email, password } = this.loginForm.value;
     this.disableButton = true;
     this.loginStatus = "LoggingIn";
     this.loginService
       .loginUser({
-        username,
+        email,
         password,
       })
       .subscribe({
@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
           this.loginErrorMessage = "Invalid username or password";
         },
       });
+
     console.log("this are the login values", this.loginForm.controls);
   }
 }

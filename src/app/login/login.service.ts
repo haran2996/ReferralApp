@@ -3,29 +3,49 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, catchError, throwError } from "rxjs";
+import { Injectable, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Observable, catchError, tap, throwError } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class LoginService {
-  private loginUrl: string = "";
-  constructor(private httpClient: HttpClient) {}
-  loginUser(body: { username: string; password: string }) {
+  private loginUrl: string = "https://jsonplaceholder.typicode.com/users";
+
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+  ) {}
+
+  loginUser(body: { email: string; password: string }) {
     const options = new HttpHeaders({ "Content-Type": "application/json" });
     return this.httpClient
       .post(
         this.loginUrl,
         {
-          username: body.username,
+          email: body.email,
           password: body.password,
         },
         { headers: options },
       )
-      .pipe(catchError(this.handleError));
+      .pipe(
+        tap((data) => {
+          sessionStorage.setItem("token", (data as { token: string }).token);
+          this.router.navigate(["dashboard"]);
+        }),
+        catchError(this.handleError),
+      );
   }
 
+  isLoggedIn() {
+    return !!sessionStorage.getItem("token");
+  }
+
+  logout() {
+    sessionStorage.removeItem("token");
+    this.router.navigate(["login"]);
+  }
   private handleError(err: HttpErrorResponse): Observable<any> {
     let errMsg = "";
     console.log(`error occured while calling the apis ${err.status}`, err);

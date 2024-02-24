@@ -1,18 +1,21 @@
 <div class="login-container">
     <form [formGroup]="loginForm">
         <div class="form-feild-group">
-            <input type="text" placeholder="Username" aria-label="username" formControlName="username"/>
-            <div class="feild-validation-error" *ngIf="loginForm.controls['username'].touched && loginForm.controls['username'].errors?.['required']">
-                Required
+            <input type="text" placeholder="*Email" aria-label="email" formControlName="email"/>
+            <div class="feild-validation-error" *ngIf="(loginForm.controls['email'].touched || loginForm.controls['email'].dirty) && loginForm.controls['email'].errors">
+                {{
+                    loginForm.controls['email'].errors?.['required'] ? 
+                    'Required' : 'Enter a valid email id'
+                }}
             </div>
         </div>
         <div class="form-feild-group">
-            <input type="password" placeholder="Password" aria-label="password" formControlName="password"/>
-            <div class="feild-validation-error" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors?.['required']">
+            <input type="password" placeholder="*Password" aria-label="password" formControlName="password"/>
+            <div class="feild-validation-error" *ngIf="(loginForm.controls['password'].touched || loginForm.controls['email'].dirty) && loginForm.controls['password'].errors?.['required']">
                 Required
             </div>
         </div>
-        <button class="form-feild-button" (click)="handleLogin()" [ngClass]="{disabled: disableButton || loginForm.valid}">Login</button>
+        <button class="form-feild-button" (click)="handleLogin()" [ngClass]="{disabled: disableButton || !loginForm.valid}">Login</button>
     </form>
     <div class="error-login-status-text" *ngIf="loginStatus=='ErrorLogin'">
         {{

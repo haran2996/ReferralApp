@@ -1,2 +1,9 @@
-<p>app works!</p>
-<router-outlet></router-outlet>
+<div class="app-root-container">
+    <nav class="top-nav">
+        <div class="top-nav-button" on-click="navigateTo('login')" *ngIf="!getUrl()?.includes('login') && !isLoggedIn()">Login</div>
+        <div class="top-nav-button" on-click="navigateTo('signup')"  *ngIf="!getUrl()?.includes('signup') && ! isLoggedIn()">Sign Up</div>
+        <div class="top-nav-button" on-click="navigateTo('dashboard')"  *ngIf="!getUrl()?.includes('dashboard') && isLoggedIn()">Dashboard</div>
+        <div class="top-nav-button" on-click="logout()"  *ngIf="getUrl()?.includes('dashboard') && isLoggedIn()">Logout</div>
+    </nav>
+    <router-outlet></router-outlet>
+</div>

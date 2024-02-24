@@ -22,13 +22,13 @@ export class LoginComponent implements OnInit {
     });
   }
   handleLogin() {
-    const { username, password } = this.loginForm.controls;
+    const { username, password } = this.loginForm.value;
     this.disableButton = true;
     this.loginStatus = "LoggingIn";
     this.loginService
       .loginUser({
-        username: username.value,
-        password: password.value,
+        username,
+        password,
       })
       .subscribe({
         next: (res) => {

@@ -1,1 +1,58 @@
-<p>sign-up works!</p>
+<div class="signup-container">
+    <form [formGroup]="signupForm">
+        <div class="form-feild-group">
+            <input type="text" placeholder="*First Name" aria-label="first name" formControlName="fname"/>
+            <div class="feild-validation-error" *ngIf="(signupForm.controls['fname'].dirty || signupForm.controls['fname'].touched) && signupForm.controls['fname'].errors">
+               {{
+                    signupForm.controls['fname'].errors?.['required'] ? 
+                    'Required' : 'Numbers, special characters not allowed'
+                }}
+            </div>
+        </div>
+        <div class="form-feild-group">
+            <input type="text" placeholder="*Last Name" aria-label="last name" formControlName="lname"/>
+            <div class="feild-validation-error" *ngIf="(signupForm.controls['lname'].dirty || signupForm.controls['lname'].touched) && signupForm.controls['lname'].errors">
+                {{
+                    signupForm.controls['lname'].errors?.['required'] ? 
+                    'Required' : 'Numbers, special characters not allowed'
+                }}
+            </div>
+        </div>
+        <div class="form-feild-group">
+            <input type="text" placeholder="*Email" aria-label="email" formControlName="email"/>
+            <div class="feild-validation-error" *ngIf="(signupForm.controls['email'].dirty || signupForm.controls['email'].touched) && signupForm.controls['email'].errors">
+                {{
+                    signupForm.controls['email'].errors?.['required'] ? 
+                    'Required' : 'Enter a valid email id'
+                }}
+            </div>
+        </div>
+        <div class="form-feild-group">
+            <input type="password" placeholder="*Password" aria-label="password" formControlName="password"/>
+            <div class="feild-validation-error" *ngIf="(signupForm.controls['password'].dirty || signupForm.controls['password'].touched) && signupForm.controls['password'].errors">
+                {{
+                    signupForm.controls['password'].errors?.['required'] ? 
+                    'Required' : 'Enter atleast 8 character'
+                }}
+            </div>
+        </div>
+        <div class="form-feild-group">
+            <input type="password" placeholder="*Confirm Password" aria-label="confirm password" formControlName="cnfpassword"/>
+            <div class="feild-validation-error" *ngIf="(signupForm.controls['cnfpassword'].dirty || signupForm.controls['cnfpassword'].touched) && (signupForm.controls['cnfpassword'].errors?.['required'] || (signupForm.controls['password'].value != signupForm.controls['cnfpassword'].value))">
+                {{
+                    signupForm.controls['cnfpassword'].errors?.['required'] ?
+                    'Required' : 'Password dosent match'
+                }}
+            </div>
+        </div>
+        <button class="form-feild-button" (click)="handleSignup()" [ngClass]="{disabled: (disableButton || !signupForm.valid || (signupForm.controls['password'].value != signupForm.controls['cnfpassword'].value))}">Sign Up</button>
+    </form>
+    <div class="error-status-text" *ngIf="signupStatus=='ErrorSignup'">
+        {{
+            signupErrorMessage
+        }}
+    </div>
+    <div class="success-status-text" *ngIf="signupStatus=='LoggedIn'">
+        Signup Succesfull
+    </div>
+</div>

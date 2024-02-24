@@ -8,6 +8,7 @@ import { LoginComponent } from "../login/login.component";
 import { SignUpComponent } from "../sign-up/sign-up.component";
 import { LoginService } from "../login/login.service";
 import { HttpClientModule } from "@angular/common/http";
+import { SignUpService } from "../sign-up/sign-up.service";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { HttpClientModule } from "@angular/common/http";
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [LoginService],
+  providers: [LoginService, SignUpService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -12,7 +12,7 @@
                 Required
             </div>
         </div>
-        <button class="form-feild-button" (click)="handleLogin()" [ngClass]="{disabled: disableButton || loginForm.controls['password'].errors}">Login</button>
+        <button class="form-feild-button" (click)="handleLogin()" [ngClass]="{disabled: disableButton || loginForm.valid}">Login</button>
     </form>
     <div class="error-login-status-text" *ngIf="loginStatus=='ErrorLogin'">
         {{

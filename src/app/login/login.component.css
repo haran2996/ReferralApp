@@ -1,0 +1,68 @@
+.ng-invalid:not(form).ng-touched {
+  border-left: 1rem solid #e40f0f;
+  border-radius: 0.3rem;
+}
+input {
+  border: 1px solid #ccc;
+  border-left: 1rem solid rgb(214, 212, 212);
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  outline: none;
+}
+.form-feild-group {
+  margin-bottom: 2.5rem;
+}
+.feild-validation-error {
+  position: absolute;
+  color: #cb3939;
+  font-size: 11px;
+  font-weight: bold;
+  margin-top: 0.3rem;
+}
+.feild-validation-error::before {
+  content: "*";
+  color: #e40f0f;
+  font-size: 12px;
+}
+.form-feild-button {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #083e8f;
+  color: #f2fffe;
+}
+
+.form-feild-button:hover {
+  background-color: #083e8fc7;
+}
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: #083e8fc7;
+  color: #f2fffec2;
+}
+.form-feild-button.disabled:hover {
+  background: #fff;
+}
+.login-container {
+  background-color: #50aadf;
+  width: fit-content;
+  padding: 5rem;
+  border-radius: 1rem;
+  margin: auto;
+}
+.success-login-status-text {
+  color: #2a7a2a;
+  font-size: 13px;
+  margin-top: 1rem;
+  position: absolute;
+  font-weight: bolder;
+}
+.error-login-status-text {
+  color: #e40f0f;
+  font-size: 13px;
+  margin-top: 1rem;
+  position: absolute;
+  font-weight: bolder;
+}

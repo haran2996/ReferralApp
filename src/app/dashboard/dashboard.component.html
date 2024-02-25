@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="user-details-container" *ngIf="!showLoader && currentUserDetails && referralDetails">
-        <div>
+        <div class="user-welcome-text">
             Welcome {{currentUserDetails.fname || ''}} {{currentUserDetails.lname || ''}}
         </div>
         <div class="user-referral-text" *ngIf="currentUserDetails.referralCode">
@@ -17,7 +17,7 @@
     </div>
     <div class="user-referral-details-container" *ngIf="!showLoader && currentUserDetails && referralDetails">
         <table class="user-referral-table">
-        <tr class="user-referral-table-row"><th class="user-referral-table-head">Referred User</th><th class="user-referral-table-head">Point Earned</th><th class="user-referral-table-head"></th></tr>
+        <tr class="user-referral-table-row"><th class="user-referral-table-head">Referred User</th><th class="user-referral-table-head">Point Earned</th><th class="user-referral-table-head">Referred Date</th></tr>
 
        <tr class="user-referral-table" *ngFor="let user of referralDetails">
         <td class="user-referral-table-data">{{user.refferedUser.fname}} {{user.refferedUser.lname}}</td><td class="user-referral-table-data">{{user.referralPoints}} pts</td><td class="user-referral-table-data">{{user.referredDate}}</td>

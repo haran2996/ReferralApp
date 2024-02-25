@@ -107,6 +107,9 @@ export class DashboardComponent implements OnInit {
       next: (res) => {
         this.apiStatus["referralDetails"] = API_STATUS.Success;
         this.referralDetails = res as ReferralDetails[];
+        this.referralDetails.reduce((prev, curr) => {
+          return (prev += curr.referralPoints);
+        }, 0);
         this.checkAllApiStatus();
       },
       error: (err) => {

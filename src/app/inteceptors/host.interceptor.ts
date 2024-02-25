@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class HostInterceptor implements HttpInterceptor {
-  private apiHostUrl = "";
+  private apiHostUrl = "https://lp3j83-8080.csb.app";
   constructor() {}
   intercept(
     request: HttpRequest<unknown>,

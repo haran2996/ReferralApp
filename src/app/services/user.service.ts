@@ -6,8 +6,8 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class UserService {
-  private userDetailsUrl = "";
-  private referralDetailsUrl = "";
+  private userDetailsUrl = "/user";
+  private referralDetailsUrl = "/user/referrals";
   constructor(private httpClient: HttpClient) {}
 
   getUsersDetails(): Observable<unknown> {

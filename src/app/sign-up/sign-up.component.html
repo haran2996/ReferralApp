@@ -45,14 +45,17 @@
                 }}
             </div>
         </div>
+        <div class="form-feild-group">
+            <input type="text" placeholder="Referral Code" aria-label="Referral Code" formControlName="referralCode"/>
+        </div>
         <button class="form-feild-button" (click)="handleSignup()" [ngClass]="{disabled: (disableButton || !signupForm.valid || (signupForm.controls['password'].value != signupForm.controls['cnfpassword'].value))}">Sign Up</button>
     </form>
-    <div class="error-status-text" *ngIf="signupStatus=='ErrorSignup'">
+    <div class="error-status-text" *ngIf="signupStatus==='ErrorSignup'">
         {{
             signupErrorMessage
         }}
     </div>
-    <div class="success-status-text" *ngIf="signupStatus=='LoggedIn'">
+    <div class="success-status-text" *ngIf="signupStatus==='SignedUp'">
         Signup Succesfull
     </div>
 </div>

@@ -11,8 +11,8 @@ import { Observable, catchError, tap, throwError } from "rxjs";
   providedIn: "root",
 })
 export class AuthService {
-  private signupUrl: string = "";
-  private loginUrl: string = "https://jsonplaceholder.typicode.com/users";
+  private signupUrl: string = "/auth/signup";
+  private loginUrl: string = "/auth/login";
   constructor(
     private httpClient: HttpClient,
     private router: Router,
@@ -60,8 +60,8 @@ export class AuthService {
 
   private handleError(err: HttpErrorResponse): Observable<any> {
     let errMsg = "";
-    console.log(`error occured while calling the apis ${err.status}`, err);
-    errMsg = err.error.status;
+    console.log(`error occured while calling the apis ${err?.status}`, err);
+    errMsg = err?.error?.status;
     return throwError(() => errMsg);
   }
 }

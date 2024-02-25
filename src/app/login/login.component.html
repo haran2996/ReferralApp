@@ -2,12 +2,12 @@
     <form [formGroup]="loginForm">
         <div class="form-feild-group">
             <input type="text" placeholder="*Email" aria-label="email" formControlName="email"/>
-            <div class="feild-validation-error" *ngIf="(loginForm.controls['email'].touched || loginForm.controls['email'].dirty) && loginForm.controls['email'].errors">
+            <!-- <div class="feild-validation-error" *ngIf="(loginForm.controls['email'].touched || loginForm.controls['email'].dirty) && loginForm.controls['email'].errors">
                 {{
                     loginForm.controls['email'].errors?.['required'] ? 
                     'Required' : 'Enter a valid email id'
                 }}
-            </div>
+            </div> -->
         </div>
         <div class="form-feild-group">
             <input type="password" placeholder="*Password" aria-label="password" formControlName="password"/>

@@ -8,8 +8,9 @@ export interface User {
 }
 
 export interface ReferralDetails {
-  refferedUser: User;
+  refferedUser: String;
   referralPoints: number;
   referralId: string;
   referredDate: string;
+  referredUserDetails: User[];
 }

@@ -1,4 +1,5 @@
 export interface User {
+  userId: string;
   fname: string;
   lname: string;
   email: string;
@@ -6,7 +7,9 @@ export interface User {
   referralCode?: string;
 }
 
-export interface RefferalDetails {
+export interface ReferralDetails {
   refferedUser: User;
-  refferalPoints: number;
+  referralPoints: number;
+  referralId: string;
+  referredDate: string;
 }

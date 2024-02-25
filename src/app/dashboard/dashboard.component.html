@@ -4,12 +4,25 @@
             Loading
         </div>
     </div>
-    <div class="user-details-container" *ngIf="!showLoader && currentUserDetails">
-        Welcome {{currentUserDetails?.fname || ''}} {{currentUserDetails?.lname || ''}}
+    <div class="user-details-container" *ngIf="!showLoader && currentUserDetails && referralDetails">
+        <div>
+            Welcome {{currentUserDetails.fname || ''}} {{currentUserDetails.lname || ''}}
+        </div>
+        <div class="user-referral-text" *ngIf="currentUserDetails.referralCode">
+            Your Referral Code is {{currentUserDetails.referralCode}}
+        </div>
+        <div class="user-total-referral-point" *ngIf="currentUserDetails.referralCode">
+            Your have earned a total of {{totalReferralPoints}} pts
+        </div>
     </div>
-    <div class="user-referral-details-container" *ngIf="!showLoader && referralDetails">
-       <div>
-       </div>
+    <div class="user-referral-details-container" *ngIf="!showLoader && currentUserDetails && referralDetails">
+        <table class="user-referral-table">
+        <tr class="user-referral-table-row"><th class="user-referral-table-head">Referred User</th><th class="user-referral-table-head">Point Earned</th><th class="user-referral-table-head"></th></tr>
+
+       <tr class="user-referral-table" *ngFor="let user of referralDetails">
+        <td class="user-referral-table-data">{{user.refferedUser.fname}} {{user.refferedUser.lname}}</td><td class="user-referral-table-data">{{user.referralPoints}} pts</td><td class="user-referral-table-data">{{user.referredDate}}</td>
+       </tr>
+    </table>
     </div>
     <div class="user-error-container" *ngIf="!showLoader && (!currentUserDetails || !referralDetails)">
         Couldn't get the user details.......

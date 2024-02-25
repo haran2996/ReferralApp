@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { RefferalDetails, User } from "../utils/interfaces";
+import { ReferralDetails, User } from "../utils/interfaces";
 import { API_STATUS } from "../utils/enum";
 import { UserService } from "../services/user.service";
 
@@ -9,8 +9,67 @@ import { UserService } from "../services/user.service";
   styleUrl: "./dashboard.component.css",
 })
 export class DashboardComponent implements OnInit {
-  currentUserDetails!: User;
-  referralDetails!: RefferalDetails[];
+  currentUserDetails: User = {
+    fname: "Hari",
+    lname: "haran",
+    email: "Lk4wB@example.com",
+    referralCode: "12345",
+    userId: "123",
+  };
+  referralDetails: ReferralDetails[] = [
+    {
+      refferedUser: {
+        fname: "Hari",
+        lname: "haran",
+        email: "Lk4wB@example.com",
+        referralCode: "12345",
+        userId: "123",
+      },
+      referralPoints: 10,
+      referralId: "123",
+      referredDate: "12/12/2001",
+    },
+    {
+      refferedUser: {
+        fname: "Hari",
+        lname: "haran",
+        email: "Lk4wB@example.com",
+        referralCode: "12345",
+        userId: "124",
+      },
+      referralPoints: 10,
+      referralId: "124",
+      referredDate: "12/12/2001",
+    },
+    {
+      refferedUser: {
+        fname: "Hari",
+        lname: "haran",
+        email: "Lk4wB@example.com",
+        referralCode: "12345",
+        userId: "125",
+      },
+      referralPoints: 10,
+      referralId: "125",
+      referredDate: "12/12/2001",
+    },
+    {
+      refferedUser: {
+        fname: "Hari",
+        lname: "haran",
+        email: "Lk4wB@example.com",
+        referralCode: "12345",
+        userId: "125",
+      },
+      referralPoints: 10,
+      referralId: "125",
+      referredDate: "12/12/2001",
+    },
+  ];
+  totalReferralPoints: number = 100;
+  // currentUserDetails!: User;
+  // referralDetails!: ReferralDetails[];
+  // totalReferralPoints!: number
   showLoader: boolean = true;
   private apiStatus: { [key: string]: API_STATUS } = {};
   constructor(private userService: UserService) {}
@@ -47,7 +106,7 @@ export class DashboardComponent implements OnInit {
     this.userService.getReferalDetails().subscribe({
       next: (res) => {
         this.apiStatus["referralDetails"] = API_STATUS.Success;
-        this.referralDetails = res as RefferalDetails[];
+        this.referralDetails = res as ReferralDetails[];
         this.checkAllApiStatus();
       },
       error: (err) => {

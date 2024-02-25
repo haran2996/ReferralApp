@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { LoginService } from "../login/login.service";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: "app-root",
@@ -10,7 +10,7 @@ import { LoginService } from "../login/login.service";
 export class AppComponent {
   constructor(
     private router: Router,
-    private loginService: LoginService,
+    private authService: AuthService,
   ) {}
   getUrl() {
     return this.router.url;
@@ -21,10 +21,10 @@ export class AppComponent {
   }
 
   isLoggedIn() {
-    return this.loginService.isLoggedIn();
+    return this.authService.isLoggedIn();
   }
 
   logout() {
-    this.loginService.logout();
+    this.authService.logout();
   }
 }

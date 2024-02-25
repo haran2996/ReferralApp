@@ -3,16 +3,16 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from "@angular/common/http";
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable, catchError, tap, throwError } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
-export class LoginService {
+export class AuthService {
+  private signupUrl: string = "";
   private loginUrl: string = "https://jsonplaceholder.typicode.com/users";
-
   constructor(
     private httpClient: HttpClient,
     private router: Router,
@@ -42,10 +42,22 @@ export class LoginService {
     return !!sessionStorage.getItem("token");
   }
 
+  getToken() {
+    return sessionStorage.getItem("token");
+  }
+
   logout() {
     sessionStorage.removeItem("token");
     this.router.navigate(["login"]);
   }
+
+  signupUser(body: any) {
+    const options = new HttpHeaders({ "Content-Type": "application/json" });
+    return this.httpClient
+      .post(this.signupUrl, body, { headers: options })
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(err: HttpErrorResponse): Observable<any> {
     let errMsg = "";
     console.log(`error occured while calling the apis ${err.status}`, err);

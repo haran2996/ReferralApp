@@ -1,1 +1,18 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+    <div class="loader-container" *ngIf="showLoader">
+        <div class="loader-container-text">
+            Loading
+        </div>
+    </div>
+    <div class="user-details-container" *ngIf="!showLoader && currentUserDetails">
+        Welcome {{currentUserDetails?.fname || ''}} {{currentUserDetails?.lname || ''}}
+    </div>
+    <div class="user-referral-details-container" *ngIf="!showLoader && referralDetails">
+       <div>
+       </div>
+    </div>
+    <div class="user-error-container" *ngIf="!showLoader && (!currentUserDetails || !referralDetails)">
+        Couldn't get the user details.......
+        Please try again after some time
+    </div>
+</div>

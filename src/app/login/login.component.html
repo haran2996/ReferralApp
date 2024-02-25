@@ -11,7 +11,7 @@
         </div>
         <div class="form-feild-group">
             <input type="password" placeholder="*Password" aria-label="password" formControlName="password"/>
-            <div class="feild-validation-error" *ngIf="(loginForm.controls['password'].touched || loginForm.controls['email'].dirty) && loginForm.controls['password'].errors?.['required']">
+            <div class="feild-validation-error" *ngIf="(loginForm.controls['password'].touched || loginForm.controls['password'].dirty) && loginForm.controls['password'].errors?.['required']">
                 Required
             </div>
         </div>

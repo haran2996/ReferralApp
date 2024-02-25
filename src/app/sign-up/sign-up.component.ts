@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { SignUpService } from "./sign-up.service";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: "app-sign-up",
@@ -14,7 +14,7 @@ export class SignUpComponent implements OnInit {
   signupErrorMessage!: string;
   constructor(
     private formBuilder: FormBuilder,
-    private signupService: SignUpService,
+    private authService: AuthService,
   ) {}
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
@@ -27,7 +27,7 @@ export class SignUpComponent implements OnInit {
   }
   handleSignup() {
     const { email, fname, lname, password } = this.signupForm.value;
-    this.signupService
+    this.authService
       .signupUser({
         email,
         fname,
@@ -38,6 +38,7 @@ export class SignUpComponent implements OnInit {
         next: (res) => {
           console.log("Signup successful", res);
           this.signupStatus = "SignedUp";
+          this.signupForm.reset();
         },
         error: (err) => {
           console.log("API errored", err);

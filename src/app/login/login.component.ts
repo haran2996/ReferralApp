@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { LoginService } from "./login.service";
+import { AuthService } from "../services/auth.service";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginErrorMessage!: string;
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService,
+    private authService: AuthService,
   ) {}
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     const { email, password } = this.loginForm.value;
     this.disableButton = true;
     this.loginStatus = "LoggingIn";
-    this.loginService
+    this.authService
       .loginUser({
         email,
         password,
@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
           console.log(res);
           this.disableButton = false;
           this.loginStatus = "LoggedIn";
+          this.loginForm.reset();
         },
         error: (err) => {
           console.log(err);
